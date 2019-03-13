@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BAC720E42216684D0006806A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BAC720E32216684D0006806A /* main.cpp */; };
+		BAC720E42216684D0006806A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = BAC720E32216684D0006806A /* main.cc */; settings = {COMPILER_FLAGS = "-v"; }; };
+		BAD311B722346E76006F5FC8 /* concorde.h in Sources */ = {isa = PBXBuildFile; fileRef = BAC720EB22166CEA0006806A /* concorde.h */; };
+		BAD311B822346E7A006F5FC8 /* request.h in Sources */ = {isa = PBXBuildFile; fileRef = BAC720F32216832A0006806A /* request.h */; };
+		BAD311B922346E7D006F5FC8 /* httprequestparser.h in Sources */ = {isa = PBXBuildFile; fileRef = BAC720F22216832A0006806A /* httprequestparser.h */; };
+		BAD311BA22346E81006F5FC8 /* concorde.cc in Sources */ = {isa = PBXBuildFile; fileRef = BAC720EA22166CEA0006806A /* concorde.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +28,14 @@
 
 /* Begin PBXFileReference section */
 		BAC720E02216684D0006806A /* Concorde */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Concorde; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAC720E32216684D0006806A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BAC720E32216684D0006806A /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		BAC720EA22166CEA0006806A /* concorde.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = concorde.cc; sourceTree = "<group>"; };
+		BAC720EB22166CEA0006806A /* concorde.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = concorde.h; sourceTree = "<group>"; };
+		BAC720F22216832A0006806A /* httprequestparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httprequestparser.h; sourceTree = "<group>"; };
+		BAC720F32216832A0006806A /* request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
+		BAC720F42216832A0006806A /* httpresponseparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpresponseparser.h; sourceTree = "<group>"; };
+		BAC720F52216832A0006806A /* response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = response.h; sourceTree = "<group>"; };
+		BAC720F62216832A0006806A /* urlparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = urlparser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +68,14 @@
 		BAC720E22216684D0006806A /* Concorde */ = {
 			isa = PBXGroup;
 			children = (
-				BAC720E32216684D0006806A /* main.cpp */,
+				BAC720E32216684D0006806A /* main.cc */,
+				BAC720EA22166CEA0006806A /* concorde.cc */,
+				BAC720EB22166CEA0006806A /* concorde.h */,
+				BAC720F22216832A0006806A /* httprequestparser.h */,
+				BAC720F42216832A0006806A /* httpresponseparser.h */,
+				BAC720F32216832A0006806A /* request.h */,
+				BAC720F52216832A0006806A /* response.h */,
+				BAC720F62216832A0006806A /* urlparser.h */,
 			);
 			path = Concorde;
 			sourceTree = "<group>";
@@ -89,7 +107,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Andres Paez Martinez";
+				ORGANIZATIONNAME = Concorde;
 				TargetAttributes = {
 					BAC720DF2216684D0006806A = {
 						CreatedOnToolsVersion = 10.1;
@@ -118,7 +136,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAC720E42216684D0006806A /* main.cpp in Sources */,
+				BAD311BA22346E81006F5FC8 /* concorde.cc in Sources */,
+				BAD311B922346E7D006F5FC8 /* httprequestparser.h in Sources */,
+				BAD311B822346E7A006F5FC8 /* request.h in Sources */,
+				BAD311B722346E76006F5FC8 /* concorde.h in Sources */,
+				BAC720E42216684D0006806A /* main.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
