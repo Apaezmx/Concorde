@@ -9,7 +9,7 @@ The code is as simple as
 #include <iostream>
 #include "concorde.h"
 
-REGISTER_POST(login, "/index",
+REGISTER_METHOD(login, "/index",
               [](const HttpRequest& request) {
                   return "Hola Mundo";
               });
