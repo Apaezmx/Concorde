@@ -12,11 +12,22 @@
 #include "request.h"
 
 #include <stdio.h>
+#include <typeindex>
 #include <unordered_map>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <list>
+
+typedef ::httpparser::Request HttpRequest;
+
+#define REGISTER_METHOD(name, path, f)\
+class name : public concorde::ServerMethod\
+{\
+static concorde::Registrar<name> registrar; \
+std::string logic(HttpRequest& request) override {return f(request);} \
+};\
+concorde::Registrar<name> name::registrar(path);
 
 namespace concorde {
 enum ResourceType {
@@ -25,11 +36,10 @@ enum ResourceType {
     POST,
     UNDEFINED
 };
-typedef std::function<std::string(::httpparser::Request&)> Method;
     
 class ClientThread {
 public:
-    ClientThread(std::unordered_map<std::string, Method>* res);
+    ClientThread();
     ~ClientThread();
     
     void init(int server_file_descriptor);
@@ -42,7 +52,19 @@ private:
     int file_descriptor;
     struct sockaddr_in address;
     bool closed;
-    std::unordered_map<std::string, Method>* resources;  // Not owner!
+};
+        
+class ServerMethod {
+public:
+    static std::unordered_map<std::string, ServerMethod*>& registry();
+    virtual std::string logic(HttpRequest& request) = 0;
+};
+
+template <class T> struct Registrar
+{
+    Registrar(std::string const& s) {
+        ServerMethod::registry()[s] = new T();
+    }
 };
 
 class Server {
@@ -51,16 +73,10 @@ public:
     ~Server();
     
     void run();
-    
-    void register_post(const std::string& path, Method method);
-    void register_get(const std::string& path, Method method);
-    
 private:
     std::list<ClientThread> threads;
-    std::unordered_map<std::string, Method> resources;
     int socket_file_descriptor;
     struct sockaddr_in address;
-    
 };
     
 }  // namespace concorde

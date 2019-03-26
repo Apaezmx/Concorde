@@ -19,8 +19,6 @@
 #include <thread>
 #include <chrono>
 
-
-
 namespace concorde {
 namespace {
     void error(const char *msg) {
@@ -55,7 +53,7 @@ namespace {
     }
 }
 
-ClientThread::ClientThread(std::unordered_map<std::string, Method>* res) : resources(res) {
+ClientThread::ClientThread() {
     closed = false;
 }
 ClientThread::~ClientThread() {
@@ -83,15 +81,15 @@ void ClientThread::handle_client() {
         return;
     }
     std::cout << req.inspect() << std::endl;  // For debugging. TODO remove.
-    auto it = resources->find(req.uri);
-    if (it == resources->end()) {
+    auto it = ServerMethod::registry().find(req.uri);
+    if (it == ServerMethod::registry().end()) {
         httpparser::Response response = str2resp("Uri not found", 404);
         std::string out = response.inspect();
         write(file_descriptor, out.c_str(), out.length());
         closed=true;
         return;
     }
-    std::string data = it->second(req);
+    std::string data = it->second->logic(req);
     httpparser::Response response = str2resp(data, 200);
     std::string out = response.inspect();
     std::cout << "Response " << out << std::endl;
@@ -109,6 +107,11 @@ void ClientThread::init(int server_file_descriptor) {
         error("ERROR on accept");
     std::cout << "Async" << std::endl;
     std::async(&ClientThread::handle_client, this);
+}
+    
+std::unordered_map<std::string, ServerMethod*>& ServerMethod::registry() {
+    static std::unordered_map<std::string, ServerMethod*> impl;
+    return impl;
 }
 
 Server::~Server() {
@@ -138,7 +141,7 @@ void Server::run() {
         if (ready < 0)
             continue;
         
-        ClientThread client_thread(&resources);
+        ClientThread client_thread;
         std::cout << "New Client" << std::endl;
         client_thread.init(socket_file_descriptor);
         threads.push_back(client_thread);
@@ -149,15 +152,6 @@ void Server::run() {
             }
         }
     }
-}
-
-
-// Maybe do some method verification here?
-void Server::register_post(const std::string& path, Method method) {
-    resources[path] = method;
-}
-void Server::register_get(const std::string& path, Method method) {
-    resources[path] = method;
 }
 
 }  // namespace concorde

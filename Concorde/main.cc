@@ -8,20 +8,14 @@
 
 #include <iostream>
 #include "concorde.h"
-#include "request.h"
 
-std::string login(const ::httpparser::Request& req) {
-    return "Hola Mundo";
-}
-
-std::string confirm_user(const ::httpparser::Request& req) {
-    return "";
-}
+REGISTER_METHOD(login, "/index",
+              [](const HttpRequest& request) {
+                  return "Hola Mundo";
+              });
 
 int main(int argc, const char * argv[]) {
-    concorde::Server serv(2236);
-    serv.register_post("/login", login);
-    serv.register_get("/index.html", confirm_user);
+    concorde::Server serv(2235);
     serv.run();
     return 0;
 }
