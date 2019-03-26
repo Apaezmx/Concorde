@@ -6,24 +6,21 @@ A dead simple and fast web server for C++. Inspired in Python's Flask.
 
 The code is as simple as
 ```
+#include <iostream>
 #include "concorde.h"
 #include "request.h"
 
-std::string login(const ::httpparser::Request& req) {
-    return "Hola Mundo";
-}
-
-std::string confirm_user(const ::httpparser::Request& req) {
-    return "I'll confirm your user when you bring me coffee!";
-}
+REGISTER_POST(login, "/index",
+              [](const HttpRequest& request) {
+                  return "Hola Mundo";
+              });
 
 int main(int argc, const char * argv[]) {
-    concorde::Server serv(2236);
-    serv.register_post("/login", login);
-    serv.register_get("/index.html", confirm_user);
+    concorde::Server serv(2235);
     serv.run();
     return 0;
 }
+
 ```
 
 This will bring up a server on port 2236 which listens for post requests on /login and get requests on /index.html.
