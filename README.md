@@ -38,18 +38,7 @@ to compile your project.
 
 #### Build from scratch
 
-To build the project from scratch you can use
-```
-g++ -std=c++11 -c -fpic concorde.cc
-```
-
-This will create a *concorde.o* file. You can then run
-
-```
-g++ -shared -o libconcorde.so concorde.o
-```
-
-To create the library which you then use to build your binary.
+To build the project from scratch clone the repo and run make. This will generate libconcorde.so which you can use when linking your code.
 
 ## Built With
 
