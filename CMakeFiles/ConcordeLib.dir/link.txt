@@ -1,0 +1,2 @@
+/usr/bin/ar qc libConcordeLib.a  CMakeFiles/ConcordeLib.dir/src/concorde.cc.o
+/usr/bin/ranlib libConcordeLib.a

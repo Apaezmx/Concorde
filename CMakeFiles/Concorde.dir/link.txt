@@ -1,0 +1,1 @@
+/usr/bin/c++  -pthread  -rdynamic CMakeFiles/Concorde.dir/src/main.cc.o  -o Concorde libConcordeLib.a 

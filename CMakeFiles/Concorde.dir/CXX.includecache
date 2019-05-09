@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+request.h
+/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+stdio.h
+-
+typeindex
+-
+unordered_map
+-
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+list
+-
+
+/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/main.cc
+iostream
+-
+concorde.h
+/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+
+/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+string
+-
+vector
+-
+sstream
+-
+
