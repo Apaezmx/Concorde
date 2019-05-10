@@ -18,6 +18,10 @@
 #include <sys/ioctl.h>
 #include <thread>
 #include <chrono>
+#include <limits.h>
+
+#define BUF_SIZE 1 << 24
+#define DEBUG(x) std::cerr <<  x << std::flush
 
 namespace concorde {
 namespace {
@@ -51,12 +55,18 @@ namespace {
         }
         return response;
     }
+    // To use for malloc unique_ptrs.
+    struct free_delete {
+        void operator()(void* x) { free(x); }
+    };
 }
 
 ClientThread::ClientThread() {
     closed = false;
 }
 ClientThread::~ClientThread() {
+    closed = true;
+    thread_->join();
     close(file_descriptor);
 }
 
@@ -65,22 +75,22 @@ bool ClientThread::is_closed() {
 }
 
 void ClientThread::handle_client() {
-    char buf[2<<10];
-    bzero(buf,2<<10);
-    std::cout << "Reading payload" << std::endl;
-    size_t num_bytes = read(file_descriptor, buf, 2<<10);
+    char* buf = new char[BUF_SIZE];
+    memset(buf, 0, BUF_SIZE);
+    DEBUG("Reading payload");
+    size_t num_bytes = read(file_descriptor, buf, BUF_SIZE);
     httpparser::Request req;
     httpparser::HttpRequestParser parser;
     auto result = parser.parse(req, buf, buf + num_bytes);
+    free(buf);
     if (result != httpparser::HttpRequestParser::ParsingCompleted) {
-        std::cout << "Could not parse request" << std::endl;
+        DEBUG("Could not parse request");
         httpparser::Response response = str2resp("Could not parse request", 400);
         std::string out = response.inspect();
         write(file_descriptor, out.c_str(), out.length());
         closed=true;
         return;
     }
-    std::cout << req.inspect() << std::endl;  // For debugging. TODO remove.
     auto it = ServerMethod::registry().find(req.uri);
     if (it == ServerMethod::registry().end()) {
         httpparser::Response response = str2resp("Uri not found", 404);
@@ -92,7 +102,6 @@ void ClientThread::handle_client() {
     std::string data = it->second->logic(req);
     httpparser::Response response = str2resp(data, 200);
     std::string out = response.inspect();
-    std::cout << "Response " << out << std::endl;
     write(file_descriptor, out.c_str(), out.length());
 
     closed = true;
@@ -105,8 +114,7 @@ void ClientThread::init(int server_file_descriptor) {
                            &address_len);
     if (file_descriptor < 0)
         error("ERROR on accept");
-    std::cout << "Async" << std::endl;
-    std::async(&ClientThread::handle_client, this);
+    thread_ = std::unique_ptr<std::thread>(new std::thread(&ClientThread::handle_client, this));
 }
     
 std::unordered_map<std::string, ServerMethod*>& ServerMethod::registry() {
@@ -115,6 +123,7 @@ std::unordered_map<std::string, ServerMethod*>& ServerMethod::registry() {
 }
 
 Server::~Server() {
+    DEBUG("Closing socket");
     close(socket_file_descriptor);
 }
 
@@ -122,36 +131,81 @@ Server::Server(int port) {
     socket_file_descriptor = socket(AF_INET, SOCK_STREAM, 0);
     if (socket_file_descriptor < 0)
         error("ERROR opening socket");
+    int len, rc, on = 1;
+    rc = setsockopt(socket_file_descriptor, SOL_SOCKET,  SO_REUSEADDR,
+                    (char *)&on, sizeof(on));
+    if (rc < 0) {
+      close(socket_file_descriptor);
+      error("setsockopt() failed");
+    }
+    rc = ioctl(socket_file_descriptor, FIONBIO, (char *)&on);
+    if (rc < 0) {
+      close(socket_file_descriptor);
+      error("ioctl() failed");
+    }
     bzero((char *) &address, sizeof(address));
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(port);
     if (bind(socket_file_descriptor, (struct sockaddr *) &address,
-             sizeof(address)) < 0)
-        error("ERROR on binding");
-    listen(socket_file_descriptor,5);
+             sizeof(address)) < 0) {
+      close(socket_file_descriptor);
+      error("ERROR on binding");
+    }
+    rc = listen(socket_file_descriptor, 32);
+    if (rc < 0) {
+      close(socket_file_descriptor);
+      error("listen() failed");
+    }
+}
+
+bool Server::PortInUse(int port) {
+  int sfd = socket(AF_INET, SOCK_STREAM, 0);
+  if (sfd < 0)
+    return true;
+  struct sockaddr_in address;
+  bzero((char *) &address, sizeof(address));
+  address.sin_family = AF_INET;
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_port = htons(port);
+  if (bind(sfd, (struct sockaddr *) &address,
+           sizeof(address)) < 0)
+    return true;
+  close(sfd);
+  return false;
 }
 
 void Server::run() {
     while (true) {
+        if (stop_) {
+          break;
+        }
+        for (auto it = threads_.begin(); it != threads_.end(); it++) {
+            if ((*it)->is_closed()) {
+                DEBUG("Erasing client");
+                it = threads_.erase(it);
+            }
+        }
         struct pollfd fds;
         fds.fd = socket_file_descriptor;
         fds.events = POLLIN;
-        int ready = poll(&fds, 1, 2000);
-        if (ready < 0)
+        int ready = poll(&fds, 1, 500);
+        if (ready < 0 || fds.revents != POLLIN)
             continue;
         
-        ClientThread client_thread;
-        std::cout << "New Client" << std::endl;
-        client_thread.init(socket_file_descriptor);
-        threads.push_back(client_thread);
-        for (auto it = threads.begin(); it != threads.end(); it++) {
-            if (it->is_closed()) {
-                std::cout << "Errasing client" << std::endl;
-                it = threads.erase(it);
-            }
-        }
+        auto client_thread = std::unique_ptr<ClientThread>(new ClientThread());
+        DEBUG("New Request Thread");
+        client_thread->init(socket_file_descriptor);
+        threads_.emplace_back(std::move(client_thread));
     }
+}
+
+void Server::stop() {
+  stop_ = true;
+}
+
+std::thread Server::run_async() {
+    return std::thread(&Server::run, this);
 }
 
 }  // namespace concorde

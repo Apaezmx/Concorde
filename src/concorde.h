@@ -18,6 +18,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <list>
+#include <thread>
 
 typedef ::httpparser::Request HttpRequest;
 
@@ -52,6 +53,7 @@ private:
     int file_descriptor;
     struct sockaddr_in address;
     bool closed;
+    std::unique_ptr<std::thread> thread_;
 };
         
 class ServerMethod {
@@ -73,10 +75,18 @@ public:
     ~Server();
     
     void run();
+
+    void stop();
+
+    std::thread run_async();
+
+    static bool PortInUse(int port);
+
 private:
-    std::list<ClientThread> threads;
+    std::list<std::unique_ptr<ClientThread>> threads_;
     int socket_file_descriptor;
     struct sockaddr_in address;
+    bool stop_ = false;
 };
     
 }  // namespace concorde
