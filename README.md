@@ -33,7 +33,7 @@ No prerequisites.
 Running with the precompiled library, just add the library when compiling.
 eg: g++ -std=c++11 -o mymain mymain.cpp -lconcorde
 
-Be sure to include libconcorde.so in your LD_LIBRARY_PATH. Alternatively you can use the param "-L/my/path/to/libconcorde.so"
+Be sure to include `src/libconcorde.so` in your LD_LIBRARY_PATH. Alternatively you can use the param "-L/my/path/to/libconcorde.so"
 to compile your project.
 
 #### Build from scratch
@@ -53,7 +53,7 @@ finally build the project
 Optionally you can rebuild the buildsystem using cmake:
 `cmake .`
 
-.This should generate libconcorde.so which you can use when linking your code.
+.This should generate `src/libconcorde.so` which you can use when linking your code.
 
 ## Built With
 
