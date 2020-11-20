@@ -38,7 +38,22 @@ to compile your project.
 
 #### Build from scratch
 
-To build the project from scratch clone the repo and run make. This will generate libconcorde.so which you can use when linking your code.
+To build the project from scratch clone the repo please first install boost (`brew install boost` on MacOs). 
+Then you need to cp the googletest directory:
+`cp -r googletest-master googletest`
+
+Then initialize git submodules and update them:
+`git submodule init`
+`git submodule update`
+
+finally build the project
+
+`make`
+
+Optionally you can rebuild the buildsystem using cmake:
+`cmake .`
+
+.This should generate libconcorde.so which you can use when linking your code.
 
 ## Built With
 
