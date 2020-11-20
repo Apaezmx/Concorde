@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+/Users/paezand/Concorde/src/concorde.h
 request.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 stdio.h
 -
 typeindex
@@ -23,14 +23,16 @@ netinet/in.h
 -
 list
 -
+thread
+-
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/main.cc
+/Users/paezand/Concorde/src/main.cc
 iostream
 -
 concorde.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+/Users/paezand/Concorde/src/concorde.h
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 string
 -
 vector

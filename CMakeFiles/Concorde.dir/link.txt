@@ -1,1 +1,1 @@
-/usr/bin/c++  -pthread  -rdynamic CMakeFiles/Concorde.dir/src/main.cc.o  -o Concorde libConcordeLib.a 
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -pthread -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Concorde.dir/src/main.cc.o -o Concorde  libConcordeLib.a /usr/local/lib/libboost_program_options-mt.a 

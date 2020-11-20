@@ -4,20 +4,28 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/main.cc" "/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/CMakeFiles/Concorde.dir/src/main.cc.o"
+  "/Users/paezand/Concorde/src/main.cc" "/Users/paezand/Concorde/CMakeFiles/Concorde.dir/src/main.cc.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "Clang")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "BOOST_ALL_NO_LIB"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "."
-  "googletest-master/googletest/include"
-  "googletest-master/googletest"
+  "googletest/googletest/include"
+  "googletest/googletest"
+  "curlpp/include"
+  "curlpp"
+  "/usr/local/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/CMakeFiles/ConcordeLib.dir/DependInfo.cmake"
+  "/Users/paezand/Concorde/CMakeFiles/ConcordeLib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

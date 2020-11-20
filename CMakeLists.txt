@@ -8,6 +8,8 @@
 
 # Compiler flags.
 set(CMAKE_CXX_FLAGS -pthread)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 cmake_minimum_required (VERSION 2.6)
 project (Concorde)
 # The version number.
@@ -15,7 +17,6 @@ set (Concorde_VERSION_MAJOR 0)
 set (Concorde_VERSION_MINOR 1)
 
 add_subdirectory(curlpp)
-add_subdirectory(abseil-cpp)
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
@@ -33,13 +34,12 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 add_library(ConcordeLib src/concorde.cc)
 set (EXTRA_LIBS ${EXTRA_LIBS} ConcordeLib)
-set (EXTRA_LIBS ${EXTRA_LIBS} absl::strings)
 
 
 # add the executable
 add_executable(Concorde src/main.cc)
 target_link_libraries(Concorde ${EXTRA_LIBS})
-target_link_libraries( Concorde LINK_PUBLIC ${Boost_LIBRARIES} )
+target_link_libraries(Concorde LINK_PUBLIC ${Boost_LIBRARIES} )
 
 # add the install targets
 install (TARGETS Concorde DESTINATION bin)

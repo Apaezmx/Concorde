@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ConcordeLib.dir/src/concorde.cc.o"
-  "libConcordeLib.pdb"
   "libConcordeLib.a"
+  "libConcordeLib.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.cc
+/Users/paezand/Concorde/src/concorde.cc
 httprequestparser.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/httprequestparser.h
+/Users/paezand/Concorde/src/httprequestparser.h
 request.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 response.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/response.h
+/Users/paezand/Concorde/src/response.h
 concorde.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+/Users/paezand/Concorde/src/concorde.h
 future
 -
 iostream
@@ -29,10 +29,12 @@ thread
 -
 chrono
 -
+limits.h
+-
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.h
+/Users/paezand/Concorde/src/concorde.h
 request.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 stdio.h
 -
 typeindex
@@ -47,8 +49,10 @@ netinet/in.h
 -
 list
 -
+thread
+-
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/httprequestparser.h
+/Users/paezand/Concorde/src/httprequestparser.h
 algorithm
 -
 string.h
@@ -56,9 +60,9 @@ string.h
 stdlib.h
 -
 request.h
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/request.h
+/Users/paezand/Concorde/src/request.h
 string
 -
 vector
@@ -66,7 +70,7 @@ vector
 sstream
 -
 
-/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/response.h
+/Users/paezand/Concorde/src/response.h
 string
 -
 vector

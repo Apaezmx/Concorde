@@ -4,15 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/src/concorde.cc" "/usr/local/google/home/paezmartinez/prototypes/c++/Concorde/CMakeFiles/ConcordeLib.dir/src/concorde.cc.o"
+  "/Users/paezand/Concorde/src/concorde.cc" "/Users/paezand/Concorde/CMakeFiles/ConcordeLib.dir/src/concorde.cc.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/usr/local/include"
   "."
-  "googletest-master/googletest/include"
-  "googletest-master/googletest"
+  "googletest/googletest/include"
+  "googletest/googletest"
+  "curlpp/include"
+  "curlpp"
   )
 
 # Targets to which this target links.

@@ -16,7 +16,6 @@
 #include <memory>
 #include "gtest/gtest.h"
 #include <string>
-#include "absl/strings/str_cat.h"
 
 using namespace curlpp::options;
 
@@ -31,11 +30,9 @@ REGISTER_METHOD(login, "/index",
                 [](const HttpRequest& request) {
                   std::string s = "";
                   for (const auto& header : request.headers) {
-                    absl::StrAppend(&s, header.name, ": ", header.value, "\n");
+                    s += header.name + ": " + header.value + "\n";
                   }
-                  absl::StrAppend(&s,
-                                  std::string(request.content.begin(),
-                                              request.content.end()));
+                  s += std::string(request.content.begin(), request.content.end());
                   return s;
                 });
 
@@ -74,7 +71,8 @@ TEST_F(ServerTests, GetRequestHappyPath) {
   curlpp::Cleanup myCleanup;
   {
     std::ostringstream os;
-    os << curlpp::options::Url(absl::StrCat("http://localhost:", test_port_, "/hello"));
+    std::string s = "http://localhost:" + std::to_string(test_port_) + "/hello";
+    os << curlpp::options::Url(s);
     EXPECT_EQ("hello", os.str());
   }
 }
