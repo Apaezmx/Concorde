@@ -4,6 +4,6 @@
 CMakeFiles/ConcordeLib.dir/src/concorde.cc.o
  /Users/paezand/Concorde/src/concorde.cc
  /Users/paezand/Concorde/src/concorde.h
- /Users/paezand/Concorde/src/httprequestparser.h
- /Users/paezand/Concorde/src/request.h
- /Users/paezand/Concorde/src/response.h
+ /Users/paezand/Concorde/src/httpparser/httprequestparser.h
+ /Users/paezand/Concorde/src/httpparser/request.h
+ /Users/paezand/Concorde/src/httpparser/response.h

@@ -1,11 +1,11 @@
 /usr/local/bin/Concorde
 /usr/local/include/concorde.h
-/usr/local/include/urlparser.h
 /usr/local/include/concorde.h
-/usr/local/include/response.h
-/usr/local/include/httpresponseparser.h
-/usr/local/include/httprequestparser.h
-/usr/local/include/request.h
+/usr/local/include/httpparser/urlparser.h
+/usr/local/include/httpparser/response.h
+/usr/local/include/httpparser/httpresponseparser.h
+/usr/local/include/httpparser/httprequestparser.h
+/usr/local/include/httpparser/request.h
 /usr/local/include/utilspp/ThreadingFactoryMutex.inl
 /usr/local/include/utilspp/clone_ptr.hpp
 /usr/local/include/utilspp/ThreadingFactoryMutex.hpp

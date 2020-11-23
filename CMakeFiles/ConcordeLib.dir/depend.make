@@ -3,7 +3,7 @@
 
 CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/concorde.cc
 CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/concorde.h
-CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/httprequestparser.h
-CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/request.h
-CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/response.h
+CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/httpparser/httprequestparser.h
+CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/httpparser/request.h
+CMakeFiles/ConcordeLib.dir/src/concorde.cc.o: src/httpparser/response.h
 

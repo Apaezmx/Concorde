@@ -14,32 +14,8 @@
 # EXTERNAL cache entries
 ########################
 
-//Enable install rule
-ABSL_ENABLE_INSTALL:BOOL=OFF
-
-//If set, download GoogleTest from this URL
-ABSL_GOOGLETEST_DOWNLOAD_URL:STRING=
-
-//If ABSL_USE_GOOGLETEST_HEAD is OFF and ABSL_GOOGLETEST_URL is
-// not set, specifies the directory of a local GoogleTest checkout.
-ABSL_LOCAL_GOOGLETEST_DIR:PATH=/usr/src/googletest
-
-//If ON, Abseil tests will be run.
-ABSL_RUN_TESTS:BOOL=OFF
-
-//If ON, Abseil will assume that the targets for GoogleTest are
-// already provided by the including project. This makes sense
-// when Abseil is used with add_subproject.
-ABSL_USE_EXTERNAL_GOOGLETEST:BOOL=OFF
-
-//If ON, abseil will download HEAD from GoogleTest at config time.
-ABSL_USE_GOOGLETEST_HEAD:BOOL=OFF
-
 //Builds the googlemock subproject
 BUILD_GMOCK:BOOL=ON
-
-//No help, variable specified on the command line.
-BUILD_TESTING:UNINITIALIZED=ON
 
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=/usr/local/lib/cmake/Boost-1.74.0
@@ -329,174 +305,15 @@ Concorde_BINARY_DIR:STATIC=/Users/paezand/Concorde
 //Value Computed by CMake
 Concorde_SOURCE_DIR:STATIC=/Users/paezand/Concorde
 
-//Path to a library.
-CoreFoundation:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreFoundation.framework
-
 //Enable installation of googletest. (Projects embedding googletest
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=ON
-
-//Path to a library.
-LIBRT:FILEPATH=LIBRT-NOTFOUND
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/local/bin/pkg-config
 
 //Path to a program.
 PYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python
-
-//Value Computed by CMake
-absl_BINARY_DIR:STATIC=/Users/paezand/Concorde/abseil-cpp
-
-//Value Computed by CMake
-absl_SOURCE_DIR:STATIC=/Users/paezand/Concorde/abseil-cpp
-
-//Dependencies for the target
-absl_bad_any_cast_impl_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_bad_optional_access_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_bad_variant_access_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_base_LIB_DEPENDS:STATIC=general;absl::log_severity;general;absl::raw_logging_internal;general;absl::spinlock_wait;general;absl::type_traits;
-
-//Dependencies for the target
-absl_cord_LIB_DEPENDS:STATIC=general;absl::base;general;absl::optional;general;absl::raw_logging_internal;general;absl::strings;general;absl::strings_internal;
-
-//Dependencies for the target
-absl_debugging_internal_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_demangle_internal_LIB_DEPENDS:STATIC=general;absl::base;
-
-//Dependencies for the target
-absl_examine_stack_LIB_DEPENDS:STATIC=general;absl::stacktrace;general;absl::symbolize;general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_failure_signal_handler_LIB_DEPENDS:STATIC=general;absl::examine_stack;general;absl::stacktrace;general;absl::base;general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_flags_LIB_DEPENDS:STATIC=general;absl::flags_commandlineflag;general;absl::flags_config;general;absl::flags_internal;general;absl::flags_reflection;general;absl::base;general;absl::strings;
-
-//Dependencies for the target
-absl_flags_commandlineflag_LIB_DEPENDS:STATIC=general;absl::flags_commandlineflag_internal;general;absl::optional;general;absl::strings;
-
-//Dependencies for the target
-absl_flags_config_LIB_DEPENDS:STATIC=general;absl::flags_program_name;general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_flags_internal_LIB_DEPENDS:STATIC=general;absl::base;general;absl::flags_commandlineflag;general;absl::flags_commandlineflag_internal;general;absl::flags_config;general;absl::flags_marshalling;general;absl::synchronization;general;absl::meta;general;absl::utility;
-
-//Dependencies for the target
-absl_flags_marshalling_LIB_DEPENDS:STATIC=general;absl::log_severity;general;absl::strings;general;absl::str_format;
-
-//Dependencies for the target
-absl_flags_parse_LIB_DEPENDS:STATIC=general;absl::flags_config;general;absl::flags;general;absl::flags_commandlineflag;general;absl::flags_commandlineflag_internal;general;absl::flags_internal;general;absl::flags_private_handle_accessor;general;absl::flags_program_name;general;absl::flags_reflection;general;absl::flags_usage;general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_flags_private_handle_accessor_LIB_DEPENDS:STATIC=general;absl::flags_commandlineflag;general;absl::flags_commandlineflag_internal;general;absl::strings;
-
-//Dependencies for the target
-absl_flags_program_name_LIB_DEPENDS:STATIC=general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_flags_reflection_LIB_DEPENDS:STATIC=general;absl::flags_commandlineflag;general;absl::flags_private_handle_accessor;general;absl::flags_config;general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_flags_usage_LIB_DEPENDS:STATIC=general;absl::flags_usage_internal;general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_flags_usage_internal_LIB_DEPENDS:STATIC=general;absl::flags_config;general;absl::flags;general;absl::flags_commandlineflag;general;absl::flags_internal;general;absl::flags_private_handle_accessor;general;absl::flags_program_name;general;absl::flags_reflection;general;absl::strings;general;absl::synchronization;
-
-//Dependencies for the target
-absl_graphcycles_internal_LIB_DEPENDS:STATIC=general;absl::base;general;absl::malloc_internal;general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_hash_LIB_DEPENDS:STATIC=general;absl::meta;general;absl::int128;general;absl::strings;general;absl::optional;general;absl::variant;general;absl::utility;general;absl::city;
-
-//Dependencies for the target
-absl_hashtablez_sampler_LIB_DEPENDS:STATIC=general;absl::base;general;absl::exponential_biased;general;absl::have_sse;general;absl::synchronization;
-
-//Dependencies for the target
-absl_log_severity_LIB_DEPENDS:STATIC=general;absl::core_headers;
-
-//Dependencies for the target
-absl_malloc_internal_LIB_DEPENDS:STATIC=general;absl::base;general;absl::base_internal;general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_periodic_sampler_LIB_DEPENDS:STATIC=general;absl::exponential_biased;
-
-//Dependencies for the target
-absl_random_distributions_LIB_DEPENDS:STATIC=general;absl::random_internal_generate_real;general;absl::random_internal_distribution_caller;general;absl::random_internal_fast_uniform_bits;general;absl::random_internal_fastmath;general;absl::random_internal_iostream_state_saver;general;absl::random_internal_traits;general;absl::random_internal_uniform_helper;general;absl::random_internal_wide_multiply;general;absl::strings;
-
-//Dependencies for the target
-absl_random_internal_distribution_test_util_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;general;absl::strings;general;absl::str_format;general;absl::span;
-
-//Dependencies for the target
-absl_random_internal_pool_urbg_LIB_DEPENDS:STATIC=general;absl::base;general;absl::random_internal_randen;general;absl::random_internal_seed_material;general;absl::random_seed_gen_exception;general;absl::raw_logging_internal;general;absl::span;
-
-//Dependencies for the target
-absl_random_internal_randen_LIB_DEPENDS:STATIC=general;absl::random_internal_platform;general;absl::random_internal_randen_hwaes;general;absl::random_internal_randen_slow;
-
-//Dependencies for the target
-absl_random_internal_randen_hwaes_LIB_DEPENDS:STATIC=general;absl::random_internal_platform;general;absl::random_internal_randen_hwaes_impl;
-
-//Dependencies for the target
-absl_random_internal_randen_hwaes_impl_LIB_DEPENDS:STATIC=general;absl::random_internal_platform;
-
-//Dependencies for the target
-absl_random_internal_randen_slow_LIB_DEPENDS:STATIC=general;absl::random_internal_platform;
-
-//Dependencies for the target
-absl_random_internal_seed_material_LIB_DEPENDS:STATIC=general;absl::optional;general;absl::raw_logging_internal;general;absl::span;general;absl::strings;
-
-//Dependencies for the target
-absl_random_seed_sequences_LIB_DEPENDS:STATIC=general;absl::random_internal_nonsecure_base;general;absl::random_internal_pool_urbg;general;absl::random_internal_salted_seed_seq;general;absl::random_internal_seed_material;general;absl::random_seed_gen_exception;general;absl::span;
-
-//Dependencies for the target
-absl_raw_hash_set_LIB_DEPENDS:STATIC=general;absl::layout;general;absl::memory;general;absl::meta;general;absl::optional;general;absl::utility;general;absl::hashtablez_sampler;
-
-//Dependencies for the target
-absl_raw_logging_internal_LIB_DEPENDS:STATIC=general;absl::config;general;absl::core_headers;general;absl::log_severity;
-
-//Dependencies for the target
-absl_scoped_set_env_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_spinlock_wait_LIB_DEPENDS:STATIC=general;absl::base_internal;general;absl::core_headers;
-
-//Dependencies for the target
-absl_stacktrace_LIB_DEPENDS:STATIC=general;absl::debugging_internal;
-
-//Dependencies for the target
-absl_status_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;general;absl::stacktrace;general;absl::symbolize;general;absl::strings;general;absl::cord;general;absl::str_format;general;absl::optional;
-
-//Dependencies for the target
-absl_statusor_LIB_DEPENDS:STATIC=general;absl::status;general;absl::raw_logging_internal;general;absl::strings;general;absl::utility;general;absl::variant;
-
-//Dependencies for the target
-absl_str_format_internal_LIB_DEPENDS:STATIC=general;absl::strings;general;absl::int128;general;absl::span;
-
-//Dependencies for the target
-absl_strings_LIB_DEPENDS:STATIC=general;absl::strings_internal;general;absl::strings;general;absl::base;general;absl::int128;general;absl::raw_logging_internal;general;absl::throw_delegate;
-
-//Dependencies for the target
-absl_strings_internal_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_symbolize_LIB_DEPENDS:STATIC=general;absl::debugging_internal;general;absl::demangle_internal;general;absl::base;general;absl::malloc_internal;general;absl::raw_logging_internal;general;absl::strings;
-
-//Dependencies for the target
-absl_synchronization_LIB_DEPENDS:STATIC=general;absl::graphcycles_internal;general;absl::base;general;absl::malloc_internal;general;absl::raw_logging_internal;general;absl::stacktrace;general;absl::symbolize;general;absl::time;
-
-//Dependencies for the target
-absl_throw_delegate_LIB_DEPENDS:STATIC=general;absl::raw_logging_internal;
-
-//Dependencies for the target
-absl_time_LIB_DEPENDS:STATIC=general;absl::base;general;absl::civil_time;general;absl::int128;general;absl::raw_logging_internal;general;absl::strings;general;absl::time_zone;
 
 //The directory containing a CMake configuration file for boost_headers.
 boost_headers_DIR:PATH=/usr/local/lib/cmake/boost_headers-1.74.0
