@@ -1,6 +1,6 @@
 # Concorde
 
-A dead simple and fast web server for C++. Inspired in Python's Flask.
+A dead simple and fast web server for C++. Inspired in Python's Flask. Still have issues with high loads.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
 
 ```
 
-This will bring up a server on port 2236 which listens for post requests on /login and get requests on /index.html.
+This will bring up a server on port 2235 which listens for post requests on /login and get requests on /index.html.
 
 ### Prerequisites
 
@@ -49,11 +49,17 @@ Then initialize git submodules and update them:
 finally build the project
 
 `make`
+`make install`
+`make tests`
 
 Optionally you can rebuild the buildsystem using cmake:
 `cmake .`
 
-.This should generate `src/libconcorde.so` which you can use when linking your code.
+This should generate `src/libconcorde.so` which you can use when linking your code.
+
+#### Tests
+
+Use `ctest` or `make tests && ./tests` to run the tests.
 
 ## Built With
 
